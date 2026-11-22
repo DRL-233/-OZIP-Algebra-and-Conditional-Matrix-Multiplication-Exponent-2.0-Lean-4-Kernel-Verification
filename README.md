@@ -4,7 +4,7 @@
 [![Lean 4](https://img.shields.io/badge/Lean_4-v4.36.0--rc2-blue.svg)](https://lean-lang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Machine-checked **Lean 4** formalization and **TTB2 (`v0.2.0`)** runtime verification of the 54-dimensional **Octonion-$\mathbb{Z}_3$-Idempotent-Projected (OZIP)** algebra, its idempotent $\phi$-Molniya projector $P_M$, an explicit $\langle 3, 3, 2 \rangle$ matrix multiplication tensor restriction witness inside $\operatorname{im}(P_M)$, and the parametric complexity bound $\omega \le 3/\gamma_M$.
+Machine-checked **Lean 4** formalization and **TTB2 (`v0.2.0`)** runtime verification of the 54-dimensional **Octonion-$\mathbb{Z}_3$-Idempotent-Projected (OZIP)** algebra, its idempotent $\phi$-Molniya projector $P_M$, an explicit $\langle 3, 3, 2 \rangle$ matrix multiplication tensor restriction witness inside $\mathrm{im}(P_M)$, and the parametric complexity bound $\omega \le 3/\gamma_M$.
 
 - **Permanent Zenodo / EOSC Archive:** https://doi.org/10.5281/zenodo.24440448
 - **Author:** Matthias Asare-Darko (Darkon Research Laboratory, Ghana)
@@ -56,7 +56,7 @@ This formalization cleanly separates **unconditional finite/parametric theorems*
    - Exact partition of the $27^3 = 19,683$ cubic channels of the split-Albert comparison tensor into **$462$ nonzero entries** and **$19,221$ structural zeros**.
    - Exact $\phi$-Molniya double-angle tangent identity $\frac{2\varphi^{-1}}{1 - (\varphi^{-1})^2} = 2$ ($\arctan\varphi^{-1} = \frac{1}{2} i_{\text{Molniya}}$).
    - Idempotence of the $54 \times 54$ Molniya projector $P_M^2 = P_M$ via 2-spoke hub collapse ($Q_M^2 = 5 Q_M$).
-   - Exact $\langle 3, 3, 2 \rangle$ bilinear tensor restriction witness inside $\operatorname{im}(P_M)$ verified across all $324$ entries.
+   - Exact $\langle 3, 3, 2 \rangle$ bilinear tensor restriction witness inside $\mathrm{im}(P_M)$ verified across all $324$ entries.
 2. **Unconditional Parametric Scaling Law:**
    - For any proved asymptotic triality growth exponent $\gamma_M > 0$, the matrix multiplication exponent satisfies $\omega \le \frac{3}{\gamma_M}$ (e.g., $\gamma_M = \frac{4}{3} \implies \omega \le 2.25$).
 3. **Conditional Optimal Exponent ($\omega = 2.0$):**
@@ -73,7 +73,7 @@ This formalization cleanly separates **unconditional finite/parametric theorems*
 | `albert_support_accounting` | $462 + 19,221 = 19,683 = 27^3$ split-Albert support split | Kernel `decide` |
 | `phi_molniya_double_angle_tangent` | $\frac{2\varphi^{-1}}{1 - (\varphi^{-1})^2} = 2$ for $\varphi^{-1} = \frac{\sqrt{5}-1}{2}$ | Exact real algebra (`nlinarith`) |
 | `P_M_idempotent` | $P_M^2 = P_M$ for $P_M = \frac{1}{5} Q_M \in \mathbb{Q}^{54 \times 54}$ | 2-spoke hub collapse + `decide` |
-| `ozip54_restricts_to_18_matmul332` | Projected $54^3$ OZIP tensor restricts to $18 \cdot \langle 3, 3, 2 \rangle$ inside $\operatorname{im}(P_M)$ | 2-spoke contraction + `decide` |
+| `ozip54_restricts_to_18_matmul332` | Projected $54^3$ OZIP tensor restricts to $18 \cdot \langle 3, 3, 2 \rangle$ inside $\mathrm{im}(P_M)$ | 2-spoke contraction + `decide` |
 | `parametric_triality_omega_bound` | $\gamma_M > 0 \land t \le \gamma_M^{-1} \land \omega \le 3t \implies \omega \le 3/\gamma_M$ | Real inequality (`nlinarith`) |
 | `conditional_exact_omega_two` | $\gamma_M = \frac{3}{2} \land \omega \ge 2 \implies \omega = 2$ | Real inequality (`linarith`) |
 
