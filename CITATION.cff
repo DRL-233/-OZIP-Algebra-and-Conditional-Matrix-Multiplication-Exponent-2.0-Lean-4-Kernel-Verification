@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this Lean 4 formalization or accompanying manuscript, please cite it as below."
+title: "Octonion-Z3-Idempotent-Projected (OZIP) Algebra and Conditional Matrix Multiplication Exponent ω = 2.0: Lean 4 Kernel Verification"
+version: 1.0.0
+doi: 10.5281/zenodo.24440448
+date-released: 2026-11-22
+authors:
+  - family-names: "Asare-Darko"
+    given-names: "Matthias"
+    affiliation: "Darkon Research Laboratory (DRL), Ghana"
+repository-code: "https://github.com/DRL-233/OZIP-Matrix-Multiplication-Lean4"
+url: "https://doi.org/10.5281/zenodo.24440448"
+keywords:
+  - matrix multiplication exponent
+  - fast matrix multiplication
+  - non-associative algebra
+  - octonions
+  - Z3 triality
+  - Lean 4
+  - formal verification
+  - tensor restriction
+license: MIT
