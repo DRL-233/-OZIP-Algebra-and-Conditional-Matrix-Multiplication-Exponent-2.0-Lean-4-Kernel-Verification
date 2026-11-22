@@ -1,63 +1,111 @@
-# Octonion-$\mathbb{Z}_3$-Idempotent-Projected (OZIP) Algebra & Conditional $\omega = 2.0$ Formalization
+# Octonion-$\mathbb{Z}_3$-Idempotent-Projected (OZIP) Algebra and Conditional Matrix Multiplication Exponent $\omega = 2.0$: Lean 4 Kernel Verification
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24440448.svg)](https://doi.org/10.5281/zenodo.24440448)
-[![Lean 4](https://img.shields.io/badge/Lean%204-v4.36.0--rc2-blue.svg)](https://lean-lang.org/)
-[![Build Status](https://img.shields.io/badge/lake%20build-2556%2F2556%20passing-brightgreen.svg)](#reproducing-the-lean-4-kernel-verification)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Lean 4](https://img.shields.io/badge/Lean_4-v4.36.0--rc2-blue.svg)](https://lean-lang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Machine-checked **Lean 4 + Mathlib** formalization (`OZIPVerification.lean`) accompanying the manuscript on the 54-dimensional **Octonion-$\mathbb{Z}_3$-Idempotent-Projected (OZIP)** algebra built over the 9-dimensional non-associative `BBGT-9PT-V1` basis, cyclic $\mathbb{Z}_3$ triality, and the sector-differentiated Molniya idempotent projector $P_M$.
+Machine-checked **Lean 4** formalization and **TTB2 (`v0.2.0`)** runtime verification of the 54-dimensional **Octonion-$\mathbb{Z}_3$-Idempotent-Projected (OZIP)** algebra, its idempotent $\phi$-Molniya projector $P_M$, an explicit $\langle 3, 3, 2 \rangle$ matrix multiplication tensor restriction witness inside $\operatorname{im}(P_M)$, and the parametric complexity bound $\omega \le 3/\gamma_M$.
 
-- **Permanent Zenodo / EOSC Archive:** [https://doi.org/10.5281/zenodo.24440448](https://doi.org/10.5281/zenodo.24440448)
-- **Institution:** Darkon Research Laboratory (DRL), Ghana
-
----
-
-## Summary of Kernel-Verified Theorems (`OZIPVerification.lean`)
-
-All definitions and theorems compile cleanly inside Lean 4's minimal trusted kernel (`decide`, zero `native_decide`, **zero `sorry`s**, **zero custom axioms**, and **zero warnings**):
-
-1. **Complete `BBGT-9PT-V1` Multiplication Table (`zipMul`):**
-   - Formalizes all $9 \times 9 = 81$ basis products over $\{e_{-1}, e_0, e_1, e_2, e_3, e_4, e_5, e_6, e_7\}$ parameterized by associator coupling $A$.
-   - Proves `e1_mul_e5_eq_e6_plus_Ae4` ($e_1 \cdot e_5 = e_6 + A e_4$) and `e4_annihilates_six_interior_directions` ($e_4 \cdot b = 0$ for all $b \in \{e_0, e_1, e_2, e_3, e_5, e_6\}$).
-2. **Exact Support Accounting (`albert_support_accounting`):**
-   - Proves that the $27 \times 27 \times 27$ unprojected split-Albert comparison tensor partitions its $19,683$ cubic channels into **$462$ nonzero entries** ($6 + 72 + 384$) and **$19,221$ structural zeros**.
-3. **Explicit $54 \times 54$ Idempotent Molniya Projector (`P_M_idempotent`):**
-   - Defines the rational sector-differentiated projector $P_M = \frac{1}{5} Q_M \in \mathbb{Q}^{54 \times 54}$, proves 2-spoke hub collapse (`Q_M_row_two_spoke`), and establishes $Q_M^2 = 5 Q_M$ and $P_M^2 = P_M$.
-4. **Exact $\langle 3, 3, 2 \rangle$ Tensor Restriction Witness (`ozip54_restricts_to_18_matmul332`):**
-   - Constructs explicit rational projection matrices $X \in \mathbb{Q}^{54 \times 9}$, $Y \in \mathbb{Q}^{54 \times 6}$, and $Z \in \mathbb{Q}^{54 \times 6}$.
-   - Proves `X_int_in_image_Q_M`, `Y_int_in_image_Q_M`, and `Z_int_in_image_Q_M` ($P_M X = X$, $P_M Y = Y$, $P_M Z = Z$) alongside exact 2-spoke Molniya hub sparsity (`X_int_sparse_support`, `Y_int_sparse_support`, `Z_int_sparse_support`).
-   - Verifies across all $9 \times 6 \times 6 = 324$ entries that the projected $54^3$ OZIP structure tensor restricts identically to $18 \cdot \langle 3, 3, 2 \rangle$.
-5. **Conditional Transitive Deduction of $\omega = 2$ (`conditional_exact_omega_two`):**
-   - Formally proves that under Conjecture 5.1 (asymptotic Molniya triality growth rate $\gamma_M = \frac{3}{2}$, giving $t \le \frac{2}{3}$), the detecting-character upper bound $\omega \le 3t$, and the information-theoretic lower bound $\omega \ge 2$, the matrix multiplication exponent satisfies $\omega = 2$.
-
-> **Scope Clarification:** The algebraic identities, projector idempotence, exact $\langle 3, 3, 2 \rangle$ restriction witness, and conditional logical implication are unconditionally proved in Lean 4. Sustaining the asymptotic triality growth rate $\gamma_M = 3/2$ across arbitrarily high Kronecker tensor powers $\mathcal{T}_{\text{OZIP}}^{\otimes N}$ ($N \to \infty$) remains the open hypothesis stated as Conjecture 5.1.
+- **Permanent Zenodo / EOSC Archive:** https://doi.org/10.5281/zenodo.24440448
+- **Author:** Matthias Asare-Darko (Darkon Research Laboratory, Ghana)
 
 ---
 
-## Reproducing the Lean 4 Kernel Verification
+## Quickstart & Reproducibility
+
+### 1. Lean 4 Kernel Verification
+Requires [elan / Lean 4](https://leanprover-community.github.io/get_started.html) (`v4.36.0-rc2`):
 
 ```bash
-cd OZIPVerification
+git clone [https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git](https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git)
+cd OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification
+lake exe cache get
 lake build
 ```
 
-Expected output (~39.5 s):
+Expected output (zero warnings, zero `sorry`s, zero custom axioms):
+
 ```text
-✔ [2556/2556] Built OZIPVerification
 Build completed successfully (2556 jobs).
 ```
+
+### 2. Companion TTB2 `v0.2.0` Runtime Benchmark
+Requires Python 3.10+ and `numpy` (automatically installs `ttb2` if not already present):
+
+```bash
+python3 ozip_ttb2_accelerator.py
+```
+
+Expected output:
+
+```text
+Exact <3,3,2> OZIP-TTB2 Result:
+ [[ 11  -5]
+ [-10  18]
+ [ -7  21]]
+```
+
+---
+
+## Scope: Unconditional Proofs vs. Conditional Scaling
+
+This formalization cleanly separates **unconditional finite/parametric theorems** (verified inside Lean 4's minimal trusted kernel with zero `sorry`s, zero `native_decide`, and zero custom axioms) from **Conjecture 5.1**:
+
+1. **Unconditional Algebraic & Geometric Foundations ($N = 1$):**
+   - Complete $9 \times 9 = 81$ `BBGT-9PT-V1` multiplication law (`zipMul`), associator channel $e_4$, and annihilation of all 6 interior gauge directions.
+   - Exact partition of the $27^3 = 19,683$ cubic channels of the split-Albert comparison tensor into **$462$ nonzero entries** and **$19,221$ structural zeros**.
+   - Exact $\phi$-Molniya double-angle tangent identity $\frac{2\varphi^{-1}}{1 - (\varphi^{-1})^2} = 2$ ($\arctan\varphi^{-1} = \frac{1}{2} i_{\text{Molniya}}$).
+   - Idempotence of the $54 \times 54$ Molniya projector $P_M^2 = P_M$ via 2-spoke hub collapse ($Q_M^2 = 5 Q_M$).
+   - Exact $\langle 3, 3, 2 \rangle$ bilinear tensor restriction witness inside $\operatorname{im}(P_M)$ verified across all $324$ entries.
+2. **Unconditional Parametric Scaling Law:**
+   - For any proved asymptotic triality growth exponent $\gamma_M > 0$, the matrix multiplication exponent satisfies $\omega \le \frac{3}{\gamma_M}$ (e.g., $\gamma_M = \frac{4}{3} \implies \omega \le 2.25$).
+3. **Conditional Optimal Exponent ($\omega = 2.0$):**
+   - Specializing to **Conjecture 5.1** ($\gamma_M = \frac{3}{2}$ across Kronecker tensor powers $\mathcal{T}_{\text{OZIP}}^{\otimes N}$ as $N \to \infty$) together with $\omega \ge 2$ yields **$\omega = 2.0$**.
+
+---
+
+## Verified Theorems (`OZIPVerification.lean`)
+
+| Theorem | Formal Statement Summary | Verification Method |
+| :--- | :--- | :--- |
+| `e1_mul_e5_eq_e6_plus_Ae4` | $e_1 \cdot e_5 = e_6 + A e_4$ in `BBGT-9PT-V1` | Definitional equality (`rfl`) |
+| `e4_annihilates_six_interior_directions` | $e_4 \cdot e_i = 0$ for all $i \in \{0,1,2,3,5,6\}$ | Exhaustive case analysis |
+| `albert_support_accounting` | $462 + 19,221 = 19,683 = 27^3$ split-Albert support split | Kernel `decide` |
+| `phi_molniya_double_angle_tangent` | $\frac{2\varphi^{-1}}{1 - (\varphi^{-1})^2} = 2$ for $\varphi^{-1} = \frac{\sqrt{5}-1}{2}$ | Exact real algebra (`nlinarith`) |
+| `P_M_idempotent` | $P_M^2 = P_M$ for $P_M = \frac{1}{5} Q_M \in \mathbb{Q}^{54 \times 54}$ | 2-spoke hub collapse + `decide` |
+| `ozip54_restricts_to_18_matmul332` | Projected $54^3$ OZIP tensor restricts to $18 \cdot \langle 3, 3, 2 \rangle$ inside $\operatorname{im}(P_M)$ | 2-spoke contraction + `decide` |
+| `parametric_triality_omega_bound` | $\gamma_M > 0 \land t \le \gamma_M^{-1} \land \omega \le 3t \implies \omega \le 3/\gamma_M$ | Real inequality (`nlinarith`) |
+| `conditional_exact_omega_two` | $\gamma_M = \frac{3}{2} \land \omega \ge 2 \implies \omega = 2$ | Real inequality (`linarith`) |
+
+All theorems depend solely on Lean 4's standard foundational axioms (`propext`, `Classical.choice`, `Quot.sound`).
+
+---
+
+## Repository Structure
+
+```text
+.
+├── OZIPVerification.lean       # Complete Lean 4 formalization (zero sorrys, zero custom axioms)
+├── lakefile.toml               # Lake build configuration (pinned to Mathlib v4.36.0-rc2)
+├── lean-toolchain              # Pinned Lean 4 toolchain (leanprover/lean4:v4.36.0-rc2)
+├── ozip_ttb2_accelerator.py    # Companion TTB2 v0.2.0 runtime <3,3,2> verification & benchmark
+├── CITATION.cff                # Standardized citation metadata (DOI: 10.5281/zenodo.24440448)
+├── LICENSE                     # MIT License
+└── README.md                   # Documentation and reproduction guide
+```
+
+---
 
 ## Citation
 
 ```bibtex
 @software{asare_darko_2026_ozip_lean4,
   author       = {Asare-Darko, Matthias},
-  title        = {{Octonion-Z3-Idempotent-Projected (OZIP) Algebra and Conditional Matrix Multiplication Exponent ω = 2.0: Lean 4 Kernel Verification}},
-  month        = nov,
-  year         = 2026,
+  title        = {{Octonion-Z3-Idempotent-Projected (OZIP) Algebra and Conditional Matrix Multiplication Exponent omega = 2.0: Lean 4 Kernel Verification}},
+  year         = {2026},
   publisher    = {Zenodo},
   version      = {v1.0.0},
   doi          = {10.5281/zenodo.24440448},
-  url          = {https://doi.org/10.5281/zenodo.24440448}
+  url          = {[https://doi.org/10.5281/zenodo.24440448](https://doi.org/10.5281/zenodo.24440448)}
 }
 ```
