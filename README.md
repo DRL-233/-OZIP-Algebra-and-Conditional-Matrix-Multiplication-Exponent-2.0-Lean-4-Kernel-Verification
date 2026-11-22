@@ -1,4 +1,4 @@
-# Octonion-$\mathbb{Z}_3$-Idempotent-Projected (OZIP) Algebra and Conditional Matrix Multiplication Exponent $\omega = 2.0$: Lean 4 Kernel Verification
+# Octonion-Z₃-Idempotent-Projected (OZIP) Algebra and Conditional Matrix Multiplication Exponent ω = 2.0: Lean 4 Kernel Verification
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24440448.svg)](https://doi.org/10.5281/zenodo.24440448)
 [![Lean 4](https://img.shields.io/badge/Lean_4-v4.36.0--rc2-blue.svg)](https://lean-lang.org/)
@@ -13,44 +13,41 @@ Machine-checked **Lean 4** formalization and **TTB2 (`v0.2.0`)** runtime verific
 
 ## Quickstart & Reproducibility
 
-### 1. Lean 4 Kernel Verification
-Requires [elan / Lean 4](https://leanprover-community.github.io/get_started.html) (`v4.36.0-rc2`):
+### 1. Standard Terminal (Linux / macOS / WSL / Codespaces)
+Requires [elan / Lean 4](https://leanprover-community.github.io/get_started.html) (`v4.36.0-rc2`) and Python 3.10+ (`numpy`):
 
 ```bash
-git clone [https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git](https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git)
+git clone "[https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git](https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git)"
 cd OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification
 lake exe cache get
 lake build
-```
-%%bash
-export PATH="$HOME/.elan/bin:$PATH"
-rm -rf OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification
-git clone "https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git"
-cd OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification
-lake exe cache get && lake build && python3 ozip_ttb2_accelerator.py
-
-Expected output (zero warnings, zero `sorry`s, zero custom axioms):
-
-```text
-Build completed successfully (2556 jobs).
-```
-
-
-### 2. Companion TTB2 `v0.2.0` Runtime Benchmark
-Requires Python 3.10+ and `numpy` (automatically installs `ttb2` if not already present):
-
-```bash
 python3 ozip_ttb2_accelerator.py
 ```
 
-Expected output:
+### 2. Google Colab Notebook Directive
+In Google Colab, each `!` command spawns an isolated subshell (resetting `cd`) and `$HOME/.elan/bin` is not in the default `PATH`. Run the entire verification inside a single **`%%bash` cell** (do **not** prefix lines with `!`):
 
-```text
-Exact <3,3,2> OZIP-TTB2 Result:
- [[ 11  -5]
- [-10  18]
- [ -7  21]]
+```bash
+%%bash
+export PATH="$HOME/.elan/bin:$PATH"
+git clone "[https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git](https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git)"
+cd OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification
+lake exe cache get && lake build && python3 ozip_ttb2_accelerator.py
 ```
+
+### Expected Verification Output
+- **Lean 4 Kernel (`lake build`):**
+  ```text
+  Build completed successfully (2556 jobs).
+  ```
+  *(Zero warnings, zero `sorry`s, zero `native_decide`, zero custom axioms.)*
+- **Companion TTB2 `v0.2.0` Runtime (`ozip_ttb2_accelerator.py`):**
+  ```text
+  Exact <3,3,2> OZIP-TTB2 Result:
+   [[ 11  -5]
+   [-10  18]
+   [ -7  21]]
+  ```
 
 ---
 
