@@ -22,12 +22,21 @@ cd OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel
 lake exe cache get
 lake build
 ```
+> **Google Colab Note:** Prefix shell commands with `%%bash` and ensure `$HOME/.elan/bin` is on `PATH`:
+> ```bash
+> %%bash
+> export PATH="$HOME/.elan/bin:$PATH"
+> git clone [https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git](https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git)
+> cd OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification
+> lake exe cache get && lake build && python3 ozip_ttb2_accelerator.py
+> ```
 
 Expected output (zero warnings, zero `sorry`s, zero custom axioms):
 
 ```text
 Build completed successfully (2556 jobs).
 ```
+
 
 ### 2. Companion TTB2 `v0.2.0` Runtime Benchmark
 Requires Python 3.10+ and `numpy` (automatically installs `ttb2` if not already present):
