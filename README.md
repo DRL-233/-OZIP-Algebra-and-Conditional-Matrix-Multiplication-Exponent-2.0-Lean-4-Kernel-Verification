@@ -40,10 +40,22 @@ In Google Colab, each `!` command spawns an isolated subshell (resetting `cd`) a
 
 ```bash
 %%bash
-export PATH="$HOME/.elan/bin:$PATH"
+set -euo pipefail
+export PATH="$HOME/.elan/bin:/root/.elan/bin:$PATH"
+
+# Install elan / Lean 4 automatically if not already present in this Colab VM
+if ! command -v lake >/dev/null 2>&1; then
+  curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.36.0-rc2
+  export PATH="$HOME/.elan/bin:/root/.elan/bin:$PATH"
+fi
+
+rm -rf OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification
 git clone "https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git"
 cd OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification
-lake exe cache get && lake build && python3 ozip_ttb2_accelerator.py
+
+lake exe cache get || true
+lake build
+python3 ozip_ttb2_accelerator.py
 ```
 
 ### 3. Optional: Compile the TTB2 C++/AVX2 $N=2$ Hypergraph Engine
