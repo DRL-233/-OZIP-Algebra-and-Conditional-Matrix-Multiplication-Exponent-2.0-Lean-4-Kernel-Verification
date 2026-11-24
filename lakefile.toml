@@ -1,6 +1,17 @@
 name = "ozip"
 version = "1.0.0"
-defaultTargets = ["OZIPVerification", "OZIPDecouplingN2", "OZIPDecouplingInductive", "OZIPTrialitySymmetrization"]
+defaultTargets = [
+  "OZIPVerification",
+  "OZIPDecouplingN2",
+  "OZIPDecouplingInductive",
+  "OZIPTrialitySymmetrization",
+  "OZIPTheorem5_1"
+]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.36.0-rc2"
 
 [[lean_lib]]
 name = "OZIPVerification"
@@ -13,3 +24,6 @@ name = "OZIPDecouplingInductive"
 
 [[lean_lib]]
 name = "OZIPTrialitySymmetrization"
+
+[[lean_lib]]
+name = "OZIPTheorem5_1"
