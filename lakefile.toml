@@ -27,3 +27,6 @@ name = "OZIPTrialitySymmetrization"
 
 [[lean_lib]]
 name = "OZIPTheorem5_1"
+
+[[lean_lib]]
+name = "OZIP_Unified_Theorem5_1"
