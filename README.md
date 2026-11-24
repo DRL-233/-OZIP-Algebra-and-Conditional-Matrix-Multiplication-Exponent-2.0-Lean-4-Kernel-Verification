@@ -24,14 +24,35 @@ Since Volker Strassen's 1969 breakthrough ($\omega \approx 2.8074$), reducing th
 
 ## Quickstart & Reproducibility
 
-### 1. Standard Terminal (Linux / macOS / WSL / Codespaces)
-Requires [elan / Lean 4](https://leanprover-community.github.io/get_started.html) (`v4.36.0-rc2`), `g++` (with `-mavx2` support for the C++ hypergraph search), and Python 3.10+ (`numpy`):
+### Prerequisites
+- **Lean 4 (`v4.36.0-rc2`)** managed via [`elan`](https://github.com/leanprover/elan)
+- **Python 3.10+** with `numpy`
+- **C++17 compiler with AVX2 support** (`g++` or `clang++`, optional—precompiled Linux x86-64 `.so` binaries are included, and source files are provided for local compilation)
+
+---
+
+### Option 1: Local Linux / macOS / WSL2 Setup
 
 ```bash
-git clone "https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git"
+# 1. Install elan / Lean 4 (skip if `lake` is already installed)
+if ! command -v lake >/dev/null 2>&1; then
+  curl -sSf [https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh](https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh) | sh -s -- -y --default-toolchain leanprover/lean4:v4.36.0-rc2
+  export PATH="$HOME/.elan/bin:$PATH"
+fi
+
+# 2. Clone the repository
+git clone "[https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git](https://github.com/DRL-233/OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification.git)"
 cd OZIP-Algebra-and-Conditional-Matrix-Multiplication-Exponent-2.0-Lean-4-Kernel-Verification
+
+# 3. Materialize Mathlib dependencies, download precompiled cache (9,081 files), and verify all 5 Lean 4 modules (2,568 jobs)
+lake update
 lake exe cache get
 lake build
+
+# 4. (Optional) Recompile the AVX2 C++ shared library from source
+g++ -O3 -march=native -mavx2 -shared -fPIC ttb2_decouple_n2_v2.cpp -o libttb2_decouple_n2_v2.so
+
+# 5. Execute the exact <3,3,2> OZIP-TTB2 AVX2 runtime verification & latency benchmark
 python3 ozip_ttb2_accelerator.py
 ```
 
