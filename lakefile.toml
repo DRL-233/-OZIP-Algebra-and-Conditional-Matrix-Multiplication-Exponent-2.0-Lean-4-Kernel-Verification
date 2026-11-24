@@ -1,18 +1,15 @@
-name = "OZIPVerification"
-version = "0.1.0"
-keywords = ["math"]
-defaultTargets = ["OZIPVerification"]
-
-[leanOptions]
-pp.unicode.fun = true # pretty-prints `fun a ↦ b`
-relaxedAutoImplicit = false
-weak.linter.mathlibStandardSet = true
-maxSynthPendingDepth = 3
-
-[[require]]
-name = "mathlib"
-scope = "leanprover-community"
-rev = "v4.36.0-rc2"
+name = "ozip"
+version = "1.0.0"
+defaultTargets = ["OZIPVerification", "OZIPDecouplingN2", "OZIPDecouplingInductive", "OZIPTrialitySymmetrization"]
 
 [[lean_lib]]
 name = "OZIPVerification"
+
+[[lean_lib]]
+name = "OZIPDecouplingN2"
+
+[[lean_lib]]
+name = "OZIPDecouplingInductive"
+
+[[lean_lib]]
+name = "OZIPTrialitySymmetrization"
