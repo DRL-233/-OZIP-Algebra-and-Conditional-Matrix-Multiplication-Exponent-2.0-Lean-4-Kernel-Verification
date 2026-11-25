@@ -1,0 +1,16 @@
+{
+  "title": "OZIP Algebra & Conditional Matrix Multiplication Exponent \u03c9 = 2.0 \u2014 Lean 4 Kernel Verification (v2.0.0)",
+  "upload_type": "software",
+  "description": "Kernel-verified Lean 4 (v4.36.0-rc2 / Mathlib) formalization proving multilinear direct-sum contraction linearization, zero cross-block interference for ModeDisjointFamily, uniform tensor rank subadditivity (R <= 18^N * r), the real-exponent Sch\u00f6nhage\u2013OZIP inequality, and Standalone Theorem 5.1 (\u03c9 = 2) over arbitrary commutative semirings.",
+  "keywords": [
+    "Lean 4",
+    "Formal Verification",
+    "Matrix Multiplication Exponent",
+    "Tensor Rank",
+    "Multilinear Algebra",
+    "Z3 Triality",
+    "Automated Theorem Proving"
+  ],
+  "license": "MIT",
+  "version": "2.0.0"
+}
