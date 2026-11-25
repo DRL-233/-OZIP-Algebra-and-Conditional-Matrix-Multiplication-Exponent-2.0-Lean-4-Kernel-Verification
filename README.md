@@ -1,5 +1,7 @@
 # OZIP Algebra & Conditional Matrix Multiplication Exponent $\omega = 2.0$ — Lean 4 Kernel Verification (`v2.0.0`)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24528210.svg)](https://doi.org/10.5281/zenodo.24528210)
+
 Machine-checked formal verification in **Lean 4 (`v4.36.0-rc2` / Mathlib)** establishing the multilinear direct-sum lifting, tensor-rank subadditivity, and asymptotic matrix multiplication exponent $\omega = 2$ via **OZIP spoke decoupling** and **$\mathbb{Z}_3$ triality symmetrization**.
 
 ---
@@ -58,3 +60,23 @@ Every theorem in the stack builds with **zero `sorryAx`** and **zero custom axio
 lake build
 ```
 Inspect `#print axioms` on `OZIP_Theorem_5_1_Standalone` and `OZIP_MatMul_DirectSum_Corollary` in `OZIPTheorem5_1Rank.lean`.
+
+---
+
+## 5. Citation
+
+If you reference or build upon this Lean 4 kernel verification, please cite:
+
+> Asare-DArko, M. (2026). *OZIP Algebra & Conditional Matrix Multiplication Exponent $\omega = 2.0$ — Lean 4 Kernel Verification (v2.0.0)* (Version 2.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24528210
+
+```bibtex
+@software{asare_darko_2026_ozip_v2,
+  author       = {Asare-DArko, M.},
+  title        = {{OZIP Algebra \& Conditional Matrix Multiplication Exponent $\omega = 2.0$ --- Lean 4 Kernel Verification (v2.0.0)}},
+  year         = {2026},
+  publisher    = {Zenodo},
+  version      = {2.0.0},
+  doi          = {10.5281/zenodo.24528210},
+  url          = {[https://doi.org/10.5281/zenodo.24528210](https://doi.org/10.5281/zenodo.24528210)}
+}
+```
